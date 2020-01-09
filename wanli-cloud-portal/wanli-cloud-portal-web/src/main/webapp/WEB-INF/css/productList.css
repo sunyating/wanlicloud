@@ -1,0 +1,205 @@
+a,
+address,
+b,
+big,
+blockquote,
+body,
+center,
+cite,
+code,
+dd,
+del,
+div,
+dl,
+dt,
+em,
+fieldset,
+font,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+html,
+i,
+iframe,
+img,
+ins,
+label,
+legend,
+li,
+ol,
+p,
+pre,
+small,
+span,
+strong,
+u,
+ul,
+var {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font: 12px/150% tahoma, arial, Microsoft YaHei, Hiragino Sans GB, "\u5b8b\u4f53", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	color: #666;
+	background: #fff;
+}
+
+.goods-list-v2 {
+	margin-bottom: 20px;
+	height: auto;
+	position: relative;
+	z-index: 1;
+	_zoom: 1;
+}
+
+.goods-list-v2 .gl-warp {
+	width: 1200px;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+
+.goods-list-v2 .gl-item {
+	width: 240px;
+	height: 380px;
+	float: left;
+	position: relative;
+	z-index: 1;
+	_display: inline;
+	margin-right: 40px;
+	margin-top: 10px;
+}
+
+.goods-list-v2 .gl-item {
+	margin-right: 0;
+}
+
+.goods-list-v2 .gl-item:hover {
+	border: 1px solid #ccc;
+	z-index: 2;
+}
+
+.goods-list-v2.gl-type-3 .gl-item .gl-i-wrap {
+	padding: 12px 9px;
+}
+
+.goods-list-v2 .gl-item .gl-i-wrap {
+	width: 220px;
+	position: absolute;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	background: #fff;
+	border: 1px solid #fff;
+	padding: 38px 9px 10px;
+	transition: border-color .1s ease;
+}
+
+.goods-list-v2.gl-type-3 .gl-item .p-img {
+	margin-bottom: 5px;
+}
+
+.goods-list-v2 .gl-item .p-img {
+	height: 220px;
+	padding: 0;
+	margin-bottom: 15px;
+	position: relative;
+}
+
+.p-detail,
+.p-img,
+.p-market,
+.p-name,
+.p-price {
+	overflow: hidden;
+}
+
+a {
+	color: #666;
+	text-decoration: none;
+}
+
+.goods-list-v2 .gl-item .p-img a {
+	display: block;
+	position: relative;
+	overflow: hidden;
+}
+
+.goods-list-v2 .gl-item .p-price {
+	position: relative;
+	line-height: 22px;
+	height: 22px;
+	overflow: hidden;
+	width: 100%;
+	margin: 0 0 8px;
+}
+
+.p-price strong {
+	color: #e4393c;
+	font-weight: 400;
+	font-family: Verdana;
+}
+
+.goods-list-v2 .gl-item .p-price strong {
+	float: left;
+	margin-right: 10px;
+	color: #e4393c;
+	font-size: 20px;
+}
+
+em,
+i,
+u {
+	font-style: normal;
+}
+
+.goods-list-v2 .gl-item .p-price strong em {
+	font-size: 16px;
+}
+
+.goods-list-v2 .gl-item .p-name {
+	height: 40px;
+	margin-bottom: 8px;
+	overflow: hidden;
+}
+
+.goods-list-v2.gl-type-3 .gl-item .p-name {
+	height: 20px;
+	line-height: 20px;
+}
+
+.goods-list-v2.gl-type-3 .gl-item .p-name-type-2 {
+	height: 40px;
+}
+
+.goods-list-v2 .gl-item .p-title {
+	width: 100%;
+	height: 18px;
+	margin-top: -3px;
+	margin-bottom: 9px;
+	overflow: hidden;
+	font-weight: bold;
+}
+
+.goods-list-v2 .gl-item .p-shop {
+	line-height: 18px;
+	height: 18px;
+	overflow: hidden;
+	margin-top: -3px;
+	margin-bottom: 9px;
+}
+
+.searchFix{
+	position: fixed;
+	/* z-index: 2; */
+	top: 154px;
+	left: 1200px;
+}

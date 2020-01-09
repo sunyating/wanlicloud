@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wanli-cloud-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wanli-cloud-dao" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wanli-cloud-interface" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wanli-cloud-pojo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wanli-cloud-portal" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wanli-cloud-portal/wanli-cloud-portal-interface" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wanli-cloud-portal/wanli-cloud-portal-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wanli-cloud-portal/wanli-cloud-portal-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wanli-cloud-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wanli-cloud-sso" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wanli-cloud-sso/wanli-cloud-baidu-cas-sso" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wanli-cloud-sso/wanli-cloud-sso-interface" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wanli-cloud-sso/wanli-cloud-sso-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wanli-cloud-sso/wanli-cloud-sso-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wanli-cloud-web" charset="UTF-8" />
+  </component>
+</project>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="wanliclouddao" />
+        <module name="wanlicloudportalinterface" />
+        <module name="wanlicloudssointerface" />
+        <module name="wanlicloudportalservice" />
+        <module name="wanlicloudportalweb" />
+        <module name="wanlicloudweb" />
+        <module name="wanlicloudpojo" />
+        <module name="wanlicloudinterface" />
+        <module name="wanlicloudcommon" />
+        <module name="wanlicloudservice" />
+        <module name="wanlicloudssoweb" />
+        <module name="wanlicloudbaiducassso" />
+        <module name="wanlicloudssoservice" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="personalcenter" target="1.5" />
+      <module name="sellercenterdao" target="1.5" />
+      <module name="wanli-cloud-common" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

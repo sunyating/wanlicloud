@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <settings>
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <!--     按需加载，需要什么属性就加载什么属性-->
+        <setting name="aggressiveLazyLoading" value="false"/>
+
+        <setting name="cacheEnabled" value="true"></setting>
+    </settings>
+
+<!--    <plugins>-->
+<!--        <plugin interceptor="com.github.pagehelper.PageInterceptor">-->
+<!--        </plugin>-->
+<!--    </plugins>-->
+    <!-- 环境配置 -->
+
+<!--    <environments default="development">-->
+<!--        <environment id="development">-->
+<!--            <transactionManager type="JDBC" />-->
+<!--            <dataSource type="POOLED">-->
+<!--                <property name="driver" value="com.mysql.jdbc.Driver" ></property>-->
+<!--                <property name="url" value="jdbc:mysql://localhost:3306/sixth" />-->
+<!--                <property name="username" value="root" />-->
+<!--                <property name="password" value="123456" />-->
+<!--            </dataSource>-->
+<!--        </environment>-->
+<!--    </environments>-->
+
+    <mappers>
+        <package name="net.wanho.mapper"></package>
+    </mappers>
+
+</configuration>

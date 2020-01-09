@@ -1,0 +1,169 @@
+#div_template1 div {
+    height: 35px;
+}
+
+.liClass {
+    float: left;
+    margin: 0 2px 0 5px;
+    display: block;
+    padding: 3px 10px 3px 10px;
+    border: 1px solid #999999;
+}
+
+.liSelected {
+    border: 3px solid #f97802;
+    color: #f97802;
+
+}
+
+.liSelected {
+    border: 3px solid #f97802;
+    color: #f97802;
+}
+
+.attr {
+    list-style: none;
+}
+
+.attr li:first-child {
+
+    border: none;
+}
+
+.attr li {
+    float: left;
+    margin-left: 20px;
+
+}
+
+.attr a {
+
+    text-decoration: none;
+    color: black;
+    border: solid black 1px;
+}
+
+.attr a:hover {
+    text-decoration: none;
+    cursor: pointer;
+    border: solid red 1px;
+}
+
+.yListr {
+    width: 690px;
+    font-family: "微软雅黑";
+    margin: 46px auto 0 auto;
+}
+
+.yListr ul {
+    border-bottom: 1px solid #dcdcdc;
+    padding-bottom: 10px;
+    margin-bottom: 13px;
+}
+
+.yListr ul li {
+    height: 36px;
+    margin-bottom: 23px;
+}
+
+.yListr ul li span {
+    color: #999;
+    font-size: 14px;
+    line-height: 36px;
+    display: inline-block;
+    /*width: 42px;*/
+    padding-left: 4px;
+}
+
+.yListr ul li em {
+    cursor: pointer;
+    color: #666666;
+    font-size: 14px;
+    display: inline-block;
+    padding: 0 10px;
+    font-style: normal;
+    border: 1px solid #dcdcdc;
+    line-height: 34px;
+    height: 34px;
+}
+
+.yListr ul li em.selected_sucaihuo {
+    line-height: 32px;
+    border: 2px solid #e9630a;
+    height: 32px;
+    position: relative;
+    padding: 0 9px;
+    margin: 0 10px;
+}
+
+.yListr ul li em.selected_sucaihuo i {
+    display: block;
+    width: 15px;
+    height: 14px;
+    background: url(/img/righbt.png) no-repeat 0 0;
+    right: -1px;
+    bottom: -1px;
+    position: absolute;
+}
+
+.yListr .colorp00 {
+    color: #333333;
+    font-size: 18px;
+    line-height: 50px;
+}
+
+.yListr .colorp00 span:nth-of-type(1) {
+    color: #999;
+    font-size: 14px;
+    padding-left: 20px;
+}
+
+.yListr .colorp00 span:nth-of-type(2) {
+    color: #f00;
+    font-size: 30px;
+    padding-left: 20px;
+}
+
+.yListr .colorp00 em {
+    font-style: normal;
+}
+
+.yListr .count-control>.numSpan{
+    float: left;
+    color: #999;
+    font-size: 14px;
+    padding-left: 20px;
+    margin: 0px 30px 0 0;
+}
+
+.yListr form input, .yListr form select {
+    outline: none;
+    border: 1px solid #dcdcdc;
+    width: 86px;
+    height: 34px;
+    font-size: 14px;
+    color: #333333;
+    padding-left: 8px;
+}
+
+.yListr form select {
+    height: 36px;
+}
+
+.yListr form .YImmediatelyininstallment {
+    font-size: 24px;
+    color: #ffffff;
+    text-align: center;
+    width: 232px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 3px;
+    background: #e9630a;
+    margin-top: 42px;
+    border: none
+}
+
+.clearInfo{
+    clear: both;
+    border-bottom: 1px solid #dcdcdc
+}

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.wanho.mapper.SellerInfoDtoMapper" >
+  <resultMap id="BaseResultMap" type="net.wanho.model.seller.SellerInfoDto" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="star_level" property="starLevel" jdbcType="CHAR" />
+    <result column="total_assets" property="totalAssets" jdbcType="BIGINT" />
+    <result column="available_assets" property="availableAssets" jdbcType="BIGINT" />
+    <result column="withdraw_assets" property="withdrawAssets" jdbcType="BIGINT" />
+    <result column="volume_assets" property="volumeAssets" jdbcType="BIGINT" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="company_address" property="companyAddress" jdbcType="VARCHAR" />
+    <result column="share_proportion" property="shareProportion" jdbcType="INTEGER" />
+    <association property="createTime" column="user_id" javaType="java.util.Date" select="queryTbUserByUserId" fetchType="eager"></association>
+  </resultMap>
+
+  <select id="queryByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    SELECT * FROM tb_seller_info WHERE user_id=#{userId}
+  </select>
+  
+  <select id="queryTbUserByUserId" resultType="java.util.Date" parameterType="java.lang.Long">
+    SELECT create_time FROM tb_user WHERE id=#{user_id}
+  </select>
+
+</mapper>

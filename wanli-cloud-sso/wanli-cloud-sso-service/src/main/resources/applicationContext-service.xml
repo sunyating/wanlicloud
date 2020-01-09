@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:component-scan base-package="net.wanho.sso.service.impl"></context:component-scan>
+    <!-- 发布dubbo服务 -->
+    <dubbo:application name="wanliyun-sso-service"/>
+    <!-- 提供依赖信息，这是我们zookeeper的地址 -->
+    <dubbo:registry protocol="zookeeper" address="localhost:2181"/>
+    <!-- 暴露一个服务在20880端口 -->
+    <dubbo:protocol name="dubbo" port="20883"/>
+    <!-- 暴露一个实际服务,ref是接口实现类的首字母小写而成 -->
+    <dubbo:service interface="net.wanho.sso.service.UserService" ref="userServiceImpl" timeout="30000"/>
+</beans>

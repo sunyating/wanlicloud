@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+        xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <!--扫描-->
+    <context:component-scan base-package="net.wanho.sso.controller"></context:component-scan>
+    <!--    适配器  映射器-->
+<!--        <mvc:annotation-driven/>-->
+    <!--自定义消息转换器的编码,解决后台传输json回前台时，中文乱码问题-->
+    <mvc:annotation-driven >
+        <mvc:message-converters register-defaults="true">
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter" >
+                <property name = "supportedMediaTypes">
+                    <list>
+                        <value>application/json;charset=utf-8</value>
+                        <value>text/html;charset=utf-8</value>
+                        <!-- application 可以在任意 form 表单里面 enctype 属性默认找到 -->
+                        <value>application/x-www-form-urlencoded</value>
+                    </list>
+                </property>
+            </bean>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" ></bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+    <!--    可以通过静态页面,只针对webapp下的-->
+<!--    <mvc:default-servlet-handler></mvc:default-servlet-handler>-->
+<!--    针对WEB-INF下的文件-->
+    <mvc:resources mapping="/css/**" location="/WEB-INF/css/"></mvc:resources>
+    <mvc:resources mapping="/img/**" location="/WEB-INF/img/"></mvc:resources>
+    <mvc:resources mapping="/js/**" location="/WEB-INF/js/"></mvc:resources>
+    <mvc:resources mapping="/jsp/**" location="/WEB-INF/jsp/"></mvc:resources>
+    <mvc:resources mapping="/**" location="/"></mvc:resources>
+
+    <!--视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!-- 引用dubbo服务 -->
+    <dubbo:application name="wanliyun-sso-service"/>
+    <!-- 提供依赖信息，去zookeeper上找寻注册信息 -->
+    <dubbo:registry protocol="zookeeper" address="localhost:2181"/>
+
+    <!--此处的id，就是controller类中的成员变量的名字-->
+    <dubbo:reference interface="net.wanho.sso.service.UserService" id="userService"/>
+
+    <!--将Redis交给spring容器-->
+    <bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+        <constructor-arg name="poolConfig" ref="poolConfig"></constructor-arg>
+        <constructor-arg name="host" value="localhost"></constructor-arg>
+        <constructor-arg name="port" value="6379"></constructor-arg>
+
+    </bean>
+
+    <bean id="poolConfig" class="org.apache.commons.pool2.impl.GenericObjectPoolConfig">
+        <property name="maxIdle" value="30"></property>
+        <property name="minIdle" value="10"></property>
+        <property name="maxTotal" value="40"></property>
+    </bean>
+
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+        <property name="sessionDAO" ref="redisSessionDAO" />
+        <property name="sessionIdCookie" ref="sharesession" />
+    </bean>
+<!--    shiro-->
+    <bean id="userRealm" class="net.wanho.sso.security.MyRealm">
+        <property name="credentialsMatcher" ref="credentialsMatcher"></property>
+    </bean>
+
+    <!-- sessionIdCookie的实现,用于重写覆盖容器默认的JSESSIONID -->
+    <bean id="sharesession" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <!-- cookie的name,对应的默认是JSESSIONID -->
+        <property name="name" value="sid" />
+        <!-- jsessionId的path为/用于多个系统共享jsessionId -->
+        <property name="path" value="/" />
+        <property name="httpOnly" value="false" />
+    </bean>
+    <!--凭证管理器-->
+    <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+        <!--加密方式-->
+        <property name="hashAlgorithmName" value="SHA-256"/>
+        <!--加密次数-->
+        <property name="hashIterations" value="2"/>
+    </bean>
+    <!-- shiro redisManager -->
+    <bean id="redisManager" class="org.crazycake.shiro.RedisManager">
+        <property name="host" value="localhost" />
+        <property name="port" value="6379" />
+    </bean>
+
+    <!-- redisSessionDAO -->
+    <bean id="redisSessionDAO" class="org.crazycake.shiro.RedisSessionDAO">
+        <property name="redisManager" ref="redisManager" />
+        <property name="keyPrefix" value="shiro_session_" />
+    </bean>
+
+    <!-- cacheManager -->
+    <bean id="cacheManager" class="org.crazycake.shiro.RedisCacheManager">
+        <property name="redisManager" ref="redisManager" />
+    </bean>
+
+    <!-- shiro securityManager -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="userRealm" />
+        <property name="sessionManager" ref="sessionManager" />
+        <property name="cacheManager" ref="cacheManager" />
+    </bean>
+
+    <!--shiro的上下文（securityUtils.setSecurityManager）-->
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="staticMethod" value="org.apache.shiro.SecurityUtils.setSecurityManager"/>
+        <property name="arguments" ref="securityManager"/>
+    </bean>
+
+    <!--shiro的web过滤器-->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <!-- loginUrl认证提交地址，如果没有认证将会请求此地址进行认证-->
+        <property name="loginUrl" value="/user/toLogin"/>
+        <!-- 通过unauthorizedUrl指定没有权限操作时跳转页面-->
+        <property name="unauthorizedUrl" value="/.jsp"/>
+        <property name="filterChainDefinitions">
+            <value>
+                /css/**=anon
+                /js/**=anon
+                /img/**=anon
+                /user/toLogin=anon
+                /user/login=anon
+                /user/register=anon
+                /user/toRegister=anon
+                /user/check/**=anon
+                /user/token/**=anon
+                /**=user
+            </value>
+        </property>
+    </bean>
+
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+          depends-on="lifecycleBeanPostProcessor">
+        <property name="proxyTargetClass" value="true"/>
+    </bean>
+
+    <!--shiro生命周期-->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+</beans>

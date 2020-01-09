@@ -1,0 +1,47 @@
+/*.table th, .table td: {
+    text-align: center;
+    vertical-align: middle!important;
+
+}*/
+
+.table tbody tr td{
+    vertical-align: middle;
+}
+/*规格开始======================================================================*/
+.clearfix:after {visibility: hidden;display: block;font-size: 0;content: " ";clear: both;height: 0;}
+* html .clearfix             { zoom: 1; } /* IE6 */
+*:first-child+html .clearfix { zoom: 1; } /* IE7 */
+
+/*tab*/
+.tab{ line-height:56px; font-size:14px;}
+.tab a{ color:#07c;}
+.tab a:hover{ color:#c00;}
+.tab a.cur{ font-weight:bold;}
+
+/*商品详细页*/
+/*iteminfo*/
+.iteminfo{}
+.iteminfo_tit{ color:#333; font-size:22px; font-family:"微软雅黑",Arial, Helvetica, sans-serif; border-bottom:1px solid #e3e3e3; font-weight:normal; padding-bottom:12px; line-height:32px;}
+.iteminfo_parameter{ padding:8px 0; padding-left:70px;}
+.iteminfo_parameter_default{ color:#888;}
+.iteminfo_parameter dt{ margin-left:-70px; float:left; display:inline; width:60px; white-space:nowrap; text-align:right; }
+
+.iteminfo_mktprice{ font-size:12px; font-family:Arial, Helvetica, sans-serif; text-decoration:line-through;}
+.lh32{ line-height:32px;}
+.iteminfo_price{ color:#c00; font-size:14px; font-family:Arial, Helvetica, sans-serif; vertical-align:middle;}
+.sys_item_price{ color:#c00; font-size:22px; vertical-align:middle;}
+.iteminfo_buying{ padding:12px 0 12px 35px;}
+
+/*规格*/
+.sys_item_spec dl.iteminfo_parameter{ padding-top:5px; padding-bottom:5px;}
+.sys_item_spec dl.iteminfo_parameter dt{ line-height:32px;}
+
+.sys_item_specpara dd{
+    padding-left: 45px;
+}
+
+
+
+/*一下正对图片*/
+
+/*规格结束======================================================================*/
